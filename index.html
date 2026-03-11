@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Ais Tersayang 💗</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:Arial;
+    text-align:center;
+    background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+    overflow:hidden;
+}
+
+h1{
+    color:#ff5c8a;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:20px;
+    background:#ffb6c1;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:active{
+    transform:scale(0.9);
+}
+
+#pesan{
+    margin-top:30px;
+    font-size:20px;
+    color:#444;
+    max-width:350px;
+}
+
+.bunga{
+    position:fixed;
+    font-size:25px;
+    animation:jatuh 4s linear forwards;
+}
+
+@keyframes jatuh{
+    0%{transform:translateY(-50px);}
+    100%{transform:translateY(110vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Untuk Ais Tercinta 💗</h1>
+<p>Klik tombol ini kalau lagi pusing ya</p>
+
+<button onclick="kasihPesan()">Klik Aku 🌸</button>
+
+<div id="pesan"></div>
+
+<script>
+
+let pesan = [
+"Untuk Ais kesayanganku, kamu itu seperti rumah yang selalu ingin aku datangi.",
+"Ais manisku, jangan terlalu memikirkan hal yang membuatmu pusing ya, aku selalu ada untukmu.",
+"Sayangku Ais, kalau dunia terasa berat, istirahatlah sebentar... aku akan tetap di sini.",
+"Ais cintaku, senyummu itu sederhana tapi bisa membuat hariku jauh lebih indah.",
+"Untuk Ais yang paling spesial di hatiku, semoga hari ini kamu merasa lebih tenang dan bahagia.",
+"Ais tersayang, kalau kamu lelah, bersandarlah... walau hanya lewat kata-kata ini."
+]
+
+function kasihPesan(){
+
+let random = Math.floor(Math.random()*pesan.length)
+document.getElementById("pesan").innerText = pesan[random]
+
+for(let i=0;i<8;i++){
+    let bunga = document.createElement("div")
+    bunga.className="bunga"
+    bunga.innerHTML="🌸"
+    bunga.style.left=Math.random()*100+"%"
+    document.body.appendChild(bunga)
+
+    setTimeout(()=>{
+        bunga.remove()
+    },4000)
+}
+
+}
+
+</script>
+
+</body>
+</html>
