@@ -1,58 +1,119 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Untuk Ais Tersayang 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Ais Tersayang</title>
 
 <style>
 
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    font-family:Arial;
-    text-align:center;
-    background:linear-gradient(135deg,#fff0f5,#ffe4ec);
-    overflow:hidden;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
 }
 
-h1{
-    color:#ff5c8a;
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+overflow:hidden;
+padding:20px;
+}
+
+.container{
+max-width:500px;
+}
+
+/* glow nama */
+
+.nama{
+font-size:clamp(30px,6vw,45px);
+color:#ff4f8b;
+animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 5px #ff9cc3,0 0 10px #ff9cc3,0 0 15px #ff9cc3;
+}
+to{
+text-shadow:0 0 10px #ff4f8b,0 0 20px #ff4f8b,0 0 30px #ff4f8b;
+}
+}
+
+p{
+margin-top:10px;
+color:#555;
+font-size:18px;
 }
 
 button{
-    padding:15px 30px;
-    font-size:20px;
-    border:none;
-    border-radius:20px;
-    background:#ffb6c1;
-    cursor:pointer;
-    transition:0.3s;
+margin-top:25px;
+padding:14px 30px;
+border:none;
+border-radius:25px;
+font-size:18px;
+background:#ff7aa8;
+color:white;
+cursor:pointer;
+transition:0.25s;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+button:hover{
+transform:scale(1.05);
 }
 
 button:active{
-    transform:scale(0.9);
+transform:scale(0.9);
 }
 
 #pesan{
-    margin-top:30px;
-    font-size:20px;
-    color:#444;
-    max-width:350px;
+margin-top:25px;
+font-size:20px;
+color:#444;
+opacity:0;
+transition:0.5s;
 }
 
+/* bunga */
+
 .bunga{
-    position:fixed;
-    font-size:25px;
-    animation:jatuh 4s linear forwards;
+position:fixed;
+top:-20px;
+font-size:24px;
+animation:jatuh 6s linear forwards;
 }
 
 @keyframes jatuh{
-    0%{transform:translateY(-50px);}
-    100%{transform:translateY(110vh);}
+to{
+transform:translateY(110vh);
+}
+}
+
+/* hati */
+
+.hati{
+position:fixed;
+font-size:22px;
+animation:naik 2s forwards;
+}
+
+@keyframes naik{
+0%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+100%{
+opacity:0;
+transform:translateY(-80px) scale(1.6);
+}
 }
 
 </style>
@@ -60,39 +121,64 @@ button:active{
 
 <body>
 
-<h1>Untuk Ais Tercinta 💗</h1>
-<p>Klik tombol ini kalau lagi pusing ya</p>
+<div class="container">
 
-<button onclick="kasihPesan()">Klik Aku 🌸</button>
+<h1 class="nama">Ais ✨</h1>
+
+<p>Untuk Ais yang paling spesial di hatiku</p>
+
+<button onclick="kasihPesan()">Klik kalau lagi pusing 💗</button>
 
 <div id="pesan"></div>
+
+</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e1b6a7c16.mp3">
+</audio>
 
 <script>
 
 let pesan = [
-"Untuk Ais kesayanganku, kamu itu seperti rumah yang selalu ingin aku datangi.",
-"Ais manisku, jangan terlalu memikirkan hal yang membuatmu pusing ya, aku selalu ada untukmu.",
-"Sayangku Ais, kalau dunia terasa berat, istirahatlah sebentar... aku akan tetap di sini.",
-"Ais cintaku, senyummu itu sederhana tapi bisa membuat hariku jauh lebih indah.",
-"Untuk Ais yang paling spesial di hatiku, semoga hari ini kamu merasa lebih tenang dan bahagia.",
-"Ais tersayang, kalau kamu lelah, bersandarlah... walau hanya lewat kata-kata ini."
+"Ais tersayang, tarik nafas pelan ya... semuanya akan baik-baik saja.",
+"Ais manisku, kalau kamu lelah istirahatlah sebentar ya.",
+"Untuk Ais yang selalu ada di hatiku, semoga pusingmu cepat hilang.",
+"Ais sayangku, senyummu itu selalu membuat dunia terasa lebih hangat.",
+"Ais tercinta, kamu adalah salah satu alasan kenapa hariku selalu indah."
 ]
 
 function kasihPesan(){
 
-let random = Math.floor(Math.random()*pesan.length)
-document.getElementById("pesan").innerText = pesan[random]
+let teks=document.getElementById("pesan")
+let random=Math.floor(Math.random()*pesan.length)
 
-for(let i=0;i<8;i++){
-    let bunga = document.createElement("div")
-    bunga.className="bunga"
-    bunga.innerHTML="🌸"
-    bunga.style.left=Math.random()*100+"%"
-    document.body.appendChild(bunga)
+teks.innerText=pesan[random]
+teks.style.opacity=1
 
-    setTimeout(()=>{
-        bunga.remove()
-    },4000)
+/* bunga */
+
+for(let i=0;i<6;i++){
+let bunga=document.createElement("div")
+bunga.className="bunga"
+bunga.innerHTML="🌸"
+bunga.style.left=Math.random()*100+"%"
+document.body.appendChild(bunga)
+
+setTimeout(()=>bunga.remove(),6000)
+}
+
+/* hati */
+
+for(let i=0;i<4;i++){
+let hati=document.createElement("div")
+hati.className="hati"
+hati.innerHTML="💗"
+hati.style.left=(window.innerWidth/2 + (Math.random()*120-60))+"px"
+hati.style.top=(window.innerHeight/2)+"px"
+
+document.body.appendChild(hati)
+
+setTimeout(()=>hati.remove(),2000)
 }
 
 }
